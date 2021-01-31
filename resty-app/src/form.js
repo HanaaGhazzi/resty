@@ -1,48 +1,58 @@
 import './form.scss';
+import React from 'react';
 
 class Form extends React.Component {
- 
-    constructor(props) {
-      super(props);
-      // add state.words here and initialize it
-      this.state = {
-        url : ' ',
-        method: ' '
-      }
-    }
-  
-    onChangeValue = (e) => {
 
-        console.log(e.target.value);
-
-      let url = e.target.url.value;
-      let method = e.target.method.value; 
-      // update this.state.words with new words
-      // this.state is immutable (you can not change it directly)
-      this.setState({url , method});
-    }
-  
-    handleClick = (event) => {
-        event.preventDefault();
-        console.log('from click')
-    }
-
-
-  
-    render() {
-      return (
-        <div>
-        <form >
-        <label>URL</label>
-        <input type="radio" value= 'get' checked={this.state.method === "get"} onChange={this.onChangeValue}>GET</input>
-        <input type="radio" value= 'post' checked={this.state.method === "post"} onChange={this.onChangeValue}>POST</input>
-        <input type="radio" value= 'update' checked={this.state.method === "update"} onChange={this.onChangeValue}>UPDATE</input>
-        <input type="radio" value= 'delete' checked={this.state.method === "delete"} onChange={this.onChangeValue}>DELETE</input>
-          <button type='submit' onClick={this.handleClick}>GO !</button>
-          </form>
-        </div>
-      )
+  constructor(props) {
+    super(props);
+    // add state.words here and initialize it
+    this.state = {
+      url: ' ',
+      method: ' '
     }
   }
-  
-  export default Form;
+
+  onChangeValue = (e) => {
+    e.preventDefault();
+    console.log(e.target.value);
+
+    let url = e.target.url.value;
+    let method = e.target.method.value;
+    // update this.state.words with new words
+    // this.state is immutable (you can not change it directly)
+    this.setState({ url, method });
+  }
+
+
+
+  render() {
+    return (
+      <div>
+        <form onSubmit={this.onChangeValue}>
+          <label>URL</label>
+          <input id="url" type="url" name="url" />
+          <button type="submit"> GO !</button>
+          <div>
+            <label for="method">Get</label>
+            <input type="radio" value="Get " name="method" />
+            <label for="method">Post</label>
+            <input type="radio" value="Post " name="method" />
+            <label for="method">Delete</label>
+            <input type="radio" value="Delete " name="method" />
+            <label for="method">Put</label>
+            <input type="radio" value="Put " name="method" />
+          </div>
+
+        </form>
+
+        <div className = "content">
+          <p>
+            {this.state.method}  {this.state.url}
+          </p>
+        </div>
+      </div>
+    )
+  }
+}
+
+export default Form;
