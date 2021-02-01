@@ -1,5 +1,6 @@
 import './form.scss';
 import React from 'react';
+import superagent from 'superagent'
 
 class Form extends React.Component {
 
@@ -18,9 +19,19 @@ class Form extends React.Component {
 
     let url = e.target.url.value;
     let method = e.target.method.value;
-    // update this.state.words with new words
-    // this.state is immutable (you can not change it directly)
     this.setState({ url, method });
+
+    superagent.get(url)
+    .then(data => {
+    
+      // let count = data.body.count; 
+      // let results = data.body.results;
+      
+     this.props.handler(data)
+
+       
+       })
+
   }
 
 
@@ -28,13 +39,13 @@ class Form extends React.Component {
   render() {
     return (
       <div>
-        <form onSubmit={this.onChangeValue}>
+        <form onSubmit={this.onChangeValue} className = "content">
           <label>URL</label>
           <input id="url" type="url" name="url" />
           <button type="submit"> GO !</button>
           <div>
             <label for="method">Get</label>
-            <input type="radio" value="Get " name="method" />
+            <input type="radio" defaultChecked value="Get " name="method" />
             <label for="method">Post</label>
             <input type="radio" value="Post " name="method" />
             <label for="method">Delete</label>
@@ -45,11 +56,7 @@ class Form extends React.Component {
 
         </form>
 
-        <div className = "content">
-          <p>
-            {this.state.method}  {this.state.url}
-          </p>
-        </div>
+    
       </div>
     )
   }
