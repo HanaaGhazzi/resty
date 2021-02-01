@@ -7,3 +7,4 @@ _Our application will be an API testing tool that can be run in any browser, all
 
 # UML :
 
+![/](./assets/uml.png)
