@@ -33,13 +33,13 @@ class Form extends React.Component {
           <input id="url" type="url" name="url" />
           <button type="submit"> GO !</button>
           <div>
-            <label for="method">Get</label>
+            <label htmlFor="method">Get</label>
             <input type="radio" value="Get " name="method" />
-            <label for="method">Post</label>
+            <label htmlFor="method">Post</label>
             <input type="radio" value="Post " name="method" />
-            <label for="method">Delete</label>
+            <label htmlFor="method">Delete</label>
             <input type="radio" value="Delete " name="method" />
-            <label for="method">Put</label>
+            <label htmlFor="method">Put</label>
             <input type="radio" value="Put " name="method" />
           </div>
 
